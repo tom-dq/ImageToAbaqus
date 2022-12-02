@@ -4,6 +4,8 @@
 import typing
 import statistics
 
+FN_INP = r"data/exp1.inp"
+
 class XYZ(typing.NamedTuple):
     x: float
     y: float
@@ -105,7 +107,7 @@ def get_bounds(file_lines) -> typing.Tuple[XYZ, XYZ]:
 
 
 if __name__ == "__main__":
-    with open(r"C:\Users\Tom Wilson\source\ImageToAbaqus\data\exp1.inp") as f:
+    with open(FN_INP) as f:
         file_lines = f.readlines()
 
     print(get_bounds(file_lines))

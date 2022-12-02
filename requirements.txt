@@ -2,3 +2,5 @@ Pillow
 numpy
 scipy
 matplotlib
+opencv-python
+scikit-learn
