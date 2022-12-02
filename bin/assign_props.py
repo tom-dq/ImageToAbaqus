@@ -28,7 +28,8 @@ def main():
         print(grain_num, elems)
 
     # TODO - up to here. Need to output the section assignemnts!
-
+    # *Elset, elset=grain-18  
+    # 769,  838,  991, ...   """
 
 if __name__ == "__main__":
     main()
