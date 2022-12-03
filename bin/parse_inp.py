@@ -4,7 +4,7 @@
 import typing
 import statistics
 
-FN_INP = r"data/exp1.inp"
+FN_INP = r"data/exp2.inp"
 
 class XYZ(typing.NamedTuple):
     x: float
@@ -51,6 +51,9 @@ def get_nodes(file_lines: typing.List[str]) -> typing.Iterable[typing.Tuple[int,
         nxyz = l.split(",")
         n = int(nxyz[0])
         xyz = [float(x) for x in nxyz[1:4]]
+        # Can drop the z if it's all planar
+        if len(xyz) == 2:
+            xyz.append(0.0)
         yield n, XYZ(*xyz)
 
 def get_elements(file_lines: typing.List[str]) -> typing.Iterable[Element]:

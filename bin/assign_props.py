@@ -47,17 +47,13 @@ def get_grain_labels():
         # Get the nearest labeled point in the 
         idx_x = int(xyz.x * NX)
         idx_y = int(xyz.y * NY)
-        labeled_point = raw_labeled[idx_x, idx_y]
+
+        one_based_start = raw_labeled[idx_x, idx_y] + 1
+        labeled_point = one_based_start
         
         prop_to_elem_nums[labeled_point].append(n.num)
 
     return prop_to_elem_nums
-    for grain_num, elems in sorted(prop_to_elem_nums.items()):
-        print(grain_num, elems)
-
-    # TODO - up to here. Need to output the section assignemnts!
-    # *Elset, elset=grain-18  
-    # 769,  838,  991, ...   """
 
 
 def get_name(ent_type: AbaInpEnt, label) -> str:
@@ -74,8 +70,15 @@ def _one_section(label, elems):
 def make_abaqus_lines(prop_to_elem_nums: typing.Dict[str, typing.List[int]]) -> typing.Iterable[str]:
     # Element sets
     
+    # Make an "all elements" set for enrichemnt etc
+    all_elems = set()
+    for elems in prop_to_elem_nums.values():
+        all_elems.update(elems)
+
+    # yield from _one_elset("All", sorted(all_elems))
+
     for maker_func in [_one_elset, _one_section]:
-        for label, elems in prop_to_elem_nums.items():
+        for label, elems in sorted(prop_to_elem_nums.items()):
             yield from maker_func(label, elems)
 
 
