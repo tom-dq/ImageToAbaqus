@@ -4,7 +4,8 @@
 import typing
 import statistics
 
-FN_INP = r"data/exp2.inp"
+FN_INP = r"data/exp5.inp"
+FN_INP_OUT = r"data/exp5-out.inp"
 
 class XYZ(typing.NamedTuple):
     x: float
@@ -31,7 +32,7 @@ def _get_lines_starting_from(key: str, file_lines):
 
     for l in file_lines:
         on_header = False
-        if l.startswith(key):
+        if l.strip() == key:
             if finished:
                 raise ValueError(f"Got a second line matching {key}: {l}")
             
@@ -57,7 +58,7 @@ def get_nodes(file_lines: typing.List[str]) -> typing.Iterable[typing.Tuple[int,
         yield n, XYZ(*xyz)
 
 def get_elements(file_lines: typing.List[str]) -> typing.Iterable[Element]:
-    for l in _get_lines_starting_from("*Element", file_lines):
+    for l in _get_lines_starting_from("*Element, type=CPS4", file_lines):
         nconn = [int(x) for x in l.split(',')]
         n = nconn[0]
         conn = tuple(nconn[1:])
@@ -114,6 +115,8 @@ if __name__ == "__main__":
         file_lines = f.readlines()
 
     print(get_bounds(file_lines))
+
+    aaa = {en:xyz for en, xyz in get_element_and_cent_absolute(file_lines)}
 
     for n, xyz in get_element_and_cent_relative(file_lines):
         print(n, xyz)

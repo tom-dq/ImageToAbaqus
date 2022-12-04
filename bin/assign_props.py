@@ -1,10 +1,12 @@
 import collections
 import enum
+import functools
 import itertools
 import typing
 
 import parse_inp
 import read_image
+
 
 class AbaInpEnt(enum.Enum):
     # Key is entity type. Value is prefix of name
@@ -79,10 +81,79 @@ def make_abaqus_lines(prop_to_elem_nums: typing.Dict[str, typing.List[int]]) -> 
 
     for maker_func in [_one_elset, _one_section]:
         for label, elems in sorted(prop_to_elem_nums.items()):
+            debug_check = 10254 in elems
+            if debug_check:
+                # print(label, elems)
+                pass
+
             yield from maker_func(label, elems)
 
 
+def get_material_reference_lines(n_props: int) -> typing.Iterable[str]:
+    """Gets some number of material def lines, straight out of a reference file."""
+
+    working_set = list()
+    num_so_far = 0
+    with open(r"data/example_materials.txt") as f:
+        for l in (l.strip() for l in f if l.strip()):
+            is_starting_line = l.startswith("*Material, name=")
+            if is_starting_line:
+                yield from working_set
+                num_so_far = num_so_far + 1
+                working_set = list()
+
+                if num_so_far > n_props:
+                    # Done!
+                    return None
+
+            # This bit always happens, even for a new group of lines.
+            working_set.append(l)
+
+
+class InsertPos(enum.Enum):
+    before = "before"
+    after = "after"
+
+def interleave(source_lines) -> typing.Iterable[str]:
+    """Mix in the old and the new"""
+
+    prop_to_elem_nums = get_grain_labels()
+    el_section_lines = list(make_abaqus_lines(prop_to_elem_nums))
+
+    material_prop_lines = list(get_material_reference_lines(len(prop_to_elem_nums)))
+
+    insertions = {
+        "*End Part": (InsertPos.before, el_section_lines),  # Element sections assignments grain by grain
+        "*End Assembly": (InsertPos.after, material_prop_lines)
+    }
+
+    for l in source_lines:
+        lines_this_chunk = [l]
+        maybe_insertion = insertions.get(l.strip(), None)
+        if maybe_insertion:
+            pos, data = maybe_insertion
+            if pos == InsertPos.before:
+                lines_this_chunk = data + [l]
+
+            elif pos == InsertPos.after:
+                lines_this_chunk.extend(data)
+
+        yield from lines_this_chunk
     
+
+    
+
+def make_file():
+
+    # Read in the thing output by Abaqus
+    with open(parse_inp.FN_INP) as f:
+        file_lines = f.readlines()
+
+    with open(parse_inp.FN_INP_OUT, 'w') as f_out:
+        for l in interleave(file_lines):
+            if not l.endswith('\n'):
+                l = l + "\n"
+            f_out.write(l)
 
 
     """** Section: crystal-50  
@@ -92,7 +163,21 @@ def make_abaqus_lines(prop_to_elem_nums: typing.Dict[str, typing.List[int]]) -> 
 
 
 if __name__ == "__main__":
+    
+        
+    make_file()
+
+if False:
+    for l in get_material_reference_lines(3):
+        print(l)
+
+
+    print()
+    print()
+
+
     prop_to_elem_nums = get_grain_labels()
     for l in make_abaqus_lines(prop_to_elem_nums):
         print(l)
+
 
