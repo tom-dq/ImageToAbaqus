@@ -1,6 +1,6 @@
 import collections
 import enum
-import functools
+import random
 import itertools
 import typing
 
@@ -89,25 +89,44 @@ def make_abaqus_lines(prop_to_elem_nums: typing.Dict[str, typing.List[int]]) -> 
             yield from maker_func(label, elems)
 
 
-def get_material_reference_lines(n_props: int) -> typing.Iterable[str]:
+def get_material_reference_lines(material_names: typing.Iterable[str]) -> typing.Iterable[str]:
     """Gets some number of material def lines, straight out of a reference file."""
 
+    line_chunks = []
+
+    # List of lists of material data
+
     working_set = list()
-    num_so_far = 0
+
     with open(r"data/example_materials.txt") as f:
         for l in (l.strip() for l in f if l.strip()):
             is_starting_line = l.startswith("*Material, name=")
             if is_starting_line:
-                yield from working_set
-                num_so_far = num_so_far + 1
+                if working_set:
+                    line_chunks.append(working_set)
+
                 working_set = list()
 
-                if num_so_far > n_props:
-                    # Done!
-                    return None
 
             # This bit always happens, even for a new group of lines.
             working_set.append(l)
+
+    # Now, get a random few of them
+    random.shuffle(line_chunks)
+
+    names_to_return = collections.deque(material_names)
+    while names_to_return:
+        this_name = names_to_return.popleft()
+
+        one_from_file = line_chunks.pop()
+        
+        # Set the name to the right thing
+        if not one_from_file[0].startswith("*Material, name="):
+            raise ValueError(one_from_file[0])
+
+        one_from_file[0] = f"*Material, name={this_name}"
+
+        yield from one_from_file
 
 
 class InsertPos(enum.Enum):
@@ -120,7 +139,8 @@ def interleave(source_lines) -> typing.Iterable[str]:
     prop_to_elem_nums = get_grain_labels()
     el_section_lines = list(make_abaqus_lines(prop_to_elem_nums))
 
-    material_prop_lines = list(get_material_reference_lines(len(prop_to_elem_nums)))
+    material_names = [get_name(AbaInpEnt.material, label) for label in prop_to_elem_nums.keys()]
+    material_prop_lines = list(get_material_reference_lines(material_names))
 
     insertions = {
         "*End Part": (InsertPos.before, el_section_lines),  # Element sections assignments grain by grain
@@ -145,11 +165,14 @@ def interleave(source_lines) -> typing.Iterable[str]:
 
 def make_file():
 
+    run = 12
+
     # Read in the thing output by Abaqus
     with open(parse_inp.FN_INP) as f:
         file_lines = f.readlines()
 
-    with open(parse_inp.FN_INP_OUT, 'w') as f_out:
+    random.seed(run)
+    with open(parse_inp.FN_INP_OUT.format(suffix=run), 'w') as f_out:
         for l in interleave(file_lines):
             if not l.endswith('\n'):
                 l = l + "\n"
@@ -168,9 +191,6 @@ if __name__ == "__main__":
     make_file()
 
 if False:
-    for l in get_material_reference_lines(3):
-        print(l)
-
 
     print()
     print()

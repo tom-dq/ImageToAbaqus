@@ -30,7 +30,11 @@ def read_raw_img(fn):
     # meanshift
     # bandwidth = estimate_bandwidth(flat_image, quantile=.06, n_samples=3000)
 
-    return img
+    # Rotate so it lines up???
+    image_rot = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
+    # image_rot = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
+
+    return image_rot
 
 def mean_shift(bandwidth, max_iter, img):
     # flatten the image
@@ -139,11 +143,11 @@ def get_features(im: Image):
 
 
 if __name__ == "__main__":
-    fn = r"data/spec3.png"
 
-    im = Image.open(fn)
+    im = Image.open(FN)
 
     arr = image_to_array(im)
 
     plt.imshow(arr, interpolation='nearest')
     plt.show()
+    _ = input()
