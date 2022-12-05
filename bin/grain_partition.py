@@ -59,10 +59,30 @@ class Cluster(typing.NamedTuple):
 
     label: str
     elements: set
+    cluster_edges: typing.Dict[EdgeKey, LabeledElement]
 
     def __str__(self):
         e_nums = sorted(e.num for e in self.elements)
-        return f"{self.label}: {e_nums}"
+        free_edges = sorted({(e.n_low, e.n_high) for e in self.cluster_edges.keys()})
+        return f"{self.label}: {e_nums} / {free_edges}"
+
+    def _toggle_edge(self, edge: EdgeKey, elem: LabeledElement):
+        """All edges should come in pairs which cancel out. So if there's
+        one edge, that's a free edge. If there are two, that's no longer free."""
+
+        if edge in self.cluster_edges:
+            del self.cluster_edges[edge]
+
+        else:
+            self.cluster_edges[edge] = elem
+
+    def toggle_from_element(self, elem: LabeledElement):
+        for edge in elem.generate_edges():
+            self._toggle_edge(edge, elem)
+
+    def toggle_from_cluster(self, cluster: "Cluster"):
+        for edge, elem in cluster.cluster_edges.items():
+            self._toggle_edge(edge, elem)
 
 
 class ClusterSet:
@@ -93,7 +113,9 @@ class ClusterSet:
 
             # Each edge interface either increases or decreases the exposed edges by one.
             if maybe_existing_cluster:
-                existing_clusters.append(maybe_existing_cluster)
+                # Can have multiple edges pointing to the same existing cluster.
+                if maybe_existing_cluster not in existing_clusters:
+                    existing_clusters.append(maybe_existing_cluster)
 
             else:
                 newly_exposed_edges.append(new_edge)
@@ -111,8 +133,16 @@ class ClusterSet:
         for new_exposed_edge in newly_exposed_edges:
             self.free_edges[new_exposed_edge] = active_cluster
 
+        # Local cluster free edges
+        active_cluster.toggle_from_element(elem)
+
     def _make_new_cluster_for(self, elem: LabeledElement):
-        new_cluster = Cluster(label=elem.label, elements={elem})
+        new_cluster = Cluster(
+            label=elem.label,
+            elements={elem},
+            cluster_edges=dict(),
+        )
+
         self.clusters.add(new_cluster.label, new_cluster)
 
         return new_cluster
@@ -163,7 +193,15 @@ class ClusterSet:
         for edge in to_apply_edges:
             self.free_edges[edge] = to_keep
 
+        # Local "cluster only" version of the free edges stuff
+        for to_go in to_remove:
+            to_keep.toggle_from_cluster(to_go)
+
     def in_canonial_form(self) -> str:
+        def edge_list(el):
+            edges = sorted(el)
+            bits = [f"{n_low}-{n_high}" for n_low, n_high in edges]
+            return ", ".join(bits)
 
         # Free edges
         free_edges = collections.defaultdict(list)
@@ -180,12 +218,22 @@ class ClusterSet:
             elem_edge_lists = []
             for cluster in self.clusters.getall(key):
                 elems = sorted(e.num for e in cluster.elements)
-                fes = free_edges.get(str(cluster), [])
-                elem_edge_lists.append((elems, fes))
+                global_free_edges = free_edges.get(str(cluster), [])
+                cluster_free_edges = set(
+                    (fe.n_low, fe.n_high) for fe in cluster.cluster_edges.keys()
+                )
+                elem_edge_lists.append((elems, global_free_edges, cluster_free_edges))
 
             elem_edge_lists.sort()
-            for elem_list, fes in elem_edge_lists:
-                lines.append(f"  {key}  {elem_list} <- {sorted(fes)}")
+            for elem_list, global_free_edges, cluster_free_edges in elem_edge_lists:
+                # Global free edges are exposed on the cluster
+                cluster_only = {
+                    fe for fe in cluster_free_edges if fe not in global_free_edges
+                }
+
+                lines.append(
+                    f"  {key}  {elem_list}\tLocal: {edge_list(cluster_only)}\tGlobal: {edge_list(global_free_edges)}"
+                )
 
         for clust in sorted(free_edges.keys()):
             edge_bits = [(n1, n2) for (n1, n2) in free_edges[clust]]
@@ -263,6 +311,8 @@ def test_clustering():
     for elem in _test_elems:
         cluster_set.add_element(elem)
 
+    print()
+    print()
     print(cluster_set.in_canonial_form())
 
 
@@ -302,6 +352,9 @@ def test_specific():
 
 
 if __name__ == "__main__":
+
+    test_clustering()
+
     test_specific()
 
     test_all_orderings()
