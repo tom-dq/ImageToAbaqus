@@ -3,9 +3,15 @@ import enum
 import random
 import itertools
 import typing
+import pathlib
 
 import parse_inp
 import read_image
+
+
+class MatSource(enum.Enum):
+    general = "general"
+    mao_paper = "mao_paper"
 
 
 class AbaInpEnt(enum.Enum):
@@ -89,8 +95,19 @@ def make_abaqus_lines(prop_to_elem_nums: typing.Dict[str, typing.List[int]]) -> 
             yield from maker_func(label, elems)
 
 
-def get_material_reference_lines(material_names: typing.Iterable[str]) -> typing.Iterable[str]:
+def get_material_reference_lines(mat_source: MatSource, material_names: typing.Iterable[str]) -> typing.Iterable[str]:
     """Gets some number of material def lines, straight out of a reference file."""
+
+    match mat_source:
+        case MatSource.general:
+            fn = "data/mat_orig.txt"
+
+        case MatSource.mao_paper:
+            fn = "data/mat_mao.txt"
+
+        case _:
+            raise ValueError(mat_source)
+
 
     line_chunks = []
 
@@ -98,7 +115,7 @@ def get_material_reference_lines(material_names: typing.Iterable[str]) -> typing
 
     working_set = list()
 
-    with open(r"data/example_materials.txt") as f:
+    with open(fn) as f:
         for l in (l.strip() for l in f if l.strip()):
             is_starting_line = l.startswith("*Material, name=")
             if is_starting_line:
@@ -133,14 +150,15 @@ class InsertPos(enum.Enum):
     before = "before"
     after = "after"
 
-def interleave(source_lines) -> typing.Iterable[str]:
+
+def interleave(mat_source: MatSource,  source_lines) -> typing.Iterable[str]:
     """Mix in the old and the new"""
 
     prop_to_elem_nums = get_grain_labels()
     el_section_lines = list(make_abaqus_lines(prop_to_elem_nums))
 
     material_names = [get_name(AbaInpEnt.material, label) for label in prop_to_elem_nums.keys()]
-    material_prop_lines = list(get_material_reference_lines(material_names))
+    material_prop_lines = list(get_material_reference_lines(mat_source, material_names))
 
     insertions = {
         "*End Part": (InsertPos.before, el_section_lines),  # Element sections assignments grain by grain
@@ -161,27 +179,33 @@ def interleave(source_lines) -> typing.Iterable[str]:
         yield from lines_this_chunk
     
 
-    
+def make_out_file(mat_source: MatSource, suffix: str):
+    orig_path = pathlib.Path(parse_inp.FN_INP)
+    name_with_suffix = orig_path.stem + "-" + mat_source.name + "-" + str(suffix)
+    out_fn = pathlib.Path("out") / (name_with_suffix + orig_path.suffix)
+    return out_fn    
+
 
 def make_file():
 
-    run = 12
+    run = 1
+    mat_source = MatSource.mao_paper
 
     # Read in the thing output by Abaqus
     with open(parse_inp.FN_INP) as f:
         file_lines = f.readlines()
 
     random.seed(run)
-    with open(parse_inp.FN_INP_OUT.format(suffix=run), 'w') as f_out:
-        for l in interleave(file_lines):
+
+    fn_out = make_out_file(mat_source, run)
+
+    with open(fn_out, 'w') as f_out:
+        for l in interleave(mat_source, file_lines):
             if not l.endswith('\n'):
                 l = l + "\n"
             f_out.write(l)
 
-
-    """** Section: crystal-50  
-*Solid Section, elset=grain-50, material=metal-50  
-,  """
+    print(str(fn_out))
 
 
 

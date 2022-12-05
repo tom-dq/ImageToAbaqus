@@ -4,8 +4,8 @@
 import typing
 import statistics
 
-FN_INP = r"data/exp5-sd4.inp"
-FN_INP_OUT = r"data/exp5-sd4-out-{suffix}.inp"
+FN_INP = r"data/exp5.inp"
+
 
 class XYZ(typing.NamedTuple):
     x: float
