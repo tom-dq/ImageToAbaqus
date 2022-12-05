@@ -20,6 +20,7 @@ class RunOptions(typing.NamedTuple):
     material_source: MatSource
     mean_shift_bandwidth: int  # Higher bandwidth -> fewer distinct grains
     random_seed: int
+    critical_contiguous_grain_ratio: float
 
 
 class AbaInpEnt(enum.Enum):
@@ -68,21 +69,28 @@ def get_grain_labels(
         idx_y = int(xyz.y * NY)
 
         one_based_start = raw_labeled[idx_x, idx_y] + 1
-        labeled_point = one_based_start
+        labeled_point = str(one_based_start)
 
         prop_to_elem_nums[labeled_point].append(n)
 
     return prop_to_elem_nums
 
 
+class RemoveSmallRegionsWorkingData(typing.NamedTuple):
+    region_ratio: float
+    cluster: grain_partition.Cluster
+    adj_grains: typing.List[typing.Tuple[grain_partition.Cluster, int]]
+
+
 def _remove_small_grain_regions(
-    prop_to_elem_nums: typing.Dict[str, typing.List[parse_inp.Element]]
-):
+    grain_ratio: float,
+    prop_to_elems: typing.Dict[str, typing.List[parse_inp.Element]],
+) -> typing.Tuple[int, int, typing.Dict[str, typing.List[parse_inp.Element]]]:
 
     # Step 1 - Build the adjaceny graph of grains
     cluster_set = grain_partition.ClusterSet()
     labeled_elems = []
-    for label, fe_elems in prop_to_elem_nums.items():
+    for label, fe_elems in prop_to_elems.items():
         for fe_elem in fe_elems:
             labeled_elems.append(
                 grain_partition.LabeledElement(
@@ -90,30 +98,72 @@ def _remove_small_grain_regions(
                 )
             )
 
-    print(labeled_elems)
     cluster_set.add_all_elems(labeled_elems)
 
     # Step 2 - organise the clusters by size.
     with open(parse_inp.FN_INP) as f:
         elem_size = parse_inp.get_areas(f.readlines())
 
+    total_area = sum(elem_size.values())
+
     def produce_clusters_and_sizes():
         adj_func = cluster_set.produce_adjacency_function()
 
-        for multi_label, cluster in cluster_set.clusters.items():
+        for cluster in cluster_set.clusters.values():
             elem_nums = {e.num for e in cluster.elements}
-            region_size = sum(elem_size[e] for e in elem_nums)
-            yield multi_label, region_size, elem_nums, adj_func(cluster)
+            region_ratio = sum(elem_size[e] for e in elem_nums) / total_area
+            yield RemoveSmallRegionsWorkingData(
+                region_ratio=region_ratio, cluster=cluster, adj_grains=adj_func(cluster)
+            )
 
-    for multi_label, region_size, elem_nums, adj_list in produce_clusters_and_sizes():
-        close_data = [(conn, cluster) for (cluster, conn) in adj_list]
-        close_data.sort(reverse=True)
-        adj_str = [f"{cluster.label}: {conn}" for conn, cluster in close_data]
-        print(multi_label, region_size, list(elem_nums)[0:10])
-        for adj_s in adj_str:
-            print(f" {adj_str}")
+    working_list = list(produce_clusters_and_sizes())
+    working_list.sort()
 
-        print()
+    # Set this up, then overwrite it with any changes needed.
+    elem_num_to_prop = dict()
+    elem_num_to_fe_elem = dict()
+    for label, fe_elems in prop_to_elems.items():
+        for fe_elem in fe_elems:
+            elem_num_to_prop[fe_elem.num] = label
+            elem_num_to_fe_elem[fe_elem.num] = fe_elem
+
+    # Go through the list, smallest to largest. If it's too small, switch for something
+    # with which many edges are shared, and which is bigger.
+    removed_cluster_ids = set()
+    clusters_removed = 0
+    element_changed = 0
+    for working_data in working_list:
+        to_remove = working_data.region_ratio < grain_ratio
+        if to_remove:
+            # Find a candidate which has not itself been removed.
+            valid_candidates = [
+                (common_edges, cluster)
+                for cluster, common_edges in working_data.adj_grains
+                if id(cluster) not in removed_cluster_ids
+            ]
+
+            # Find the one with the most shared edges.
+            valid_candidates.sort(reverse=True)
+
+            if not valid_candidates:
+                # Sometimes all of a regions's neighbors have gone already. Have to wait
+                # until the next iteration of this in that case!
+                continue
+
+            migrate_to = valid_candidates[0][1]
+            for labeled_elem in working_data.cluster.elements:
+                elem_num_to_prop[labeled_elem.num] = migrate_to.label
+
+            clusters_removed += 1
+            element_changed += len(working_data.cluster.elements)
+            removed_cluster_ids.add(id(working_data.cluster))
+
+    # Build the output data structure in the same way as we provided it.
+    out_prop_to_elems = collections.defaultdict(list)
+    for elem_num, label in elem_num_to_prop.items():
+        out_prop_to_elems[label].append(elem_num_to_fe_elem[elem_num])
+
+    return clusters_removed, element_changed, out_prop_to_elems
 
 
 def get_name(ent_type: AbaInpEnt, label) -> str:
@@ -203,9 +253,41 @@ def get_material_reference_lines(
         yield from one_from_file
 
 
+def iterate_until_no_small_grains(
+    run_options: RunOptions,
+    prop_to_elems: typing.Dict[str, typing.List[parse_inp.Element]],
+) -> typing.Dict[str, typing.List[parse_inp.Element]]:
+
+    if not run_options.critical_contiguous_grain_ratio:
+        print(f"Skipping small grain removal.")
+        return prop_to_elems
+
+    num_grains, num_elem = 1, 1
+    while num_grains or num_elem:
+        num_grains, num_elem, prop_to_elems = _remove_small_grain_regions(
+            run_options.critical_contiguous_grain_ratio, prop_to_elems
+        )
+
+        print(
+            f"Removed {num_grains} small grains by adjusting the property of {num_elem} elements."
+        )
+
+    return prop_to_elems
+
+
 class InsertPos(enum.Enum):
     before = "before"
     after = "after"
+
+
+@functools.lru_cache(maxsize=256)
+def get_grain_labels_and_remove_small_grains(run_options: RunOptions):
+    prop_to_elems = get_grain_labels(run_options)
+
+    # Get rid of the small grains
+    prop_to_elems = iterate_until_no_small_grains(run_options, prop_to_elems)
+
+    return prop_to_elems
 
 
 def interleave(run_options: RunOptions, source_lines) -> typing.Iterable[str]:
@@ -213,10 +295,8 @@ def interleave(run_options: RunOptions, source_lines) -> typing.Iterable[str]:
 
     # Make this so we can cache the label output
     cacheable_run_options = run_options._replace(random_seed=None)
-    prop_to_elems = get_grain_labels(cacheable_run_options)
 
-    # TEMP!
-    _remove_small_grain_regions(prop_to_elems)
+    prop_to_elems = get_grain_labels_and_remove_small_grains(cacheable_run_options)
 
     prop_to_elem_nums = {}
     for label, elems in prop_to_elems.items():
@@ -255,12 +335,21 @@ def interleave(run_options: RunOptions, source_lines) -> typing.Iterable[str]:
 
 def make_out_file(run_options: RunOptions):
     orig_path = pathlib.Path(parse_inp.FN_INP)
+
+    grain_format = (  # No decimals for Abaqus!
+        f"{run_options.critical_contiguous_grain_ratio:1.2e}"
+        if run_options.critical_contiguous_grain_ratio
+        else "None"
+    )
+    grain_format.replace(".", "o")
     name_with_suffix = (
         orig_path.stem
         + "-"
         + run_options.material_source.name
         + "-B"
         + str(run_options.mean_shift_bandwidth)
+        + "-GR"
+        + grain_format
         + "-S"
         + str(run_options.random_seed)
     )
@@ -289,14 +378,25 @@ def make_file(run_options: RunOptions):
 
 if __name__ == "__main__":
 
-    for random_seed in range(1, 2):
-        run_options = RunOptions(
-            material_source=MatSource.mao_paper,
-            mean_shift_bandwidth=50,
-            random_seed=random_seed,
-        )
+    for critical_contiguous_grain_ratio in [
+        # None,
+        # 0.00001,
+        # 0.000025,
+        0.00005,
+        0.0001,  # Looks good?
+        0.00025,
+        # 0.001,
+        # 0.0025,
+    ]:
+        for random_seed in range(1000, 1100):
+            run_options = RunOptions(
+                material_source=MatSource.mao_paper,
+                mean_shift_bandwidth=50,
+                random_seed=random_seed,
+                critical_contiguous_grain_ratio=critical_contiguous_grain_ratio,  # 0.00025,
+            )
 
-        make_file(run_options)
+            make_file(run_options)
 
 if False:
 
