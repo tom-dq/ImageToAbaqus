@@ -14,6 +14,11 @@ class MatSource(enum.Enum):
     mao_paper = "mao_paper"
 
 
+class RunOptions(typing.NamedTuple):
+    material_source: MatSource
+    mean_shift_bandwidth: int  # Higher bandwidth -> fewer distinct grains
+    random_seed: int
+
 class AbaInpEnt(enum.Enum):
     # Key is entity type. Value is prefix of name
     elset = "grain-"
@@ -38,10 +43,10 @@ def _put_in_lines(tokens, n_per_line: int) -> typing.Iterable[str]:
         yield ", ".join(str(x) for x in line_chunk)
 
 
-def get_grain_labels():
+def get_grain_labels(run_options: RunOptions):
     # Get the labeled image with "grains"
     img = read_image.read_raw_img(read_image.FN)
-    _, raw_labeled = read_image.mean_shift(50, 1000, img)
+    _, raw_labeled = read_image.mean_shift(run_options.mean_shift_bandwidth, 1000, img)
 
     # Read in the INP
     with open(parse_inp.FN_INP) as f:
@@ -151,14 +156,14 @@ class InsertPos(enum.Enum):
     after = "after"
 
 
-def interleave(mat_source: MatSource,  source_lines) -> typing.Iterable[str]:
+def interleave(run_options: RunOptions, source_lines) -> typing.Iterable[str]:
     """Mix in the old and the new"""
 
-    prop_to_elem_nums = get_grain_labels()
+    prop_to_elem_nums = get_grain_labels(run_options)
     el_section_lines = list(make_abaqus_lines(prop_to_elem_nums))
 
     material_names = [get_name(AbaInpEnt.material, label) for label in prop_to_elem_nums.keys()]
-    material_prop_lines = list(get_material_reference_lines(mat_source, material_names))
+    material_prop_lines = list(get_material_reference_lines(run_options.material_source, material_names))
 
     insertions = {
         "*End Part": (InsertPos.before, el_section_lines),  # Element sections assignments grain by grain
@@ -179,28 +184,27 @@ def interleave(mat_source: MatSource,  source_lines) -> typing.Iterable[str]:
         yield from lines_this_chunk
     
 
-def make_out_file(mat_source: MatSource, suffix: str):
+def make_out_file(run_options: RunOptions):
     orig_path = pathlib.Path(parse_inp.FN_INP)
-    name_with_suffix = orig_path.stem + "-" + mat_source.name + "-" + str(suffix)
+    name_with_suffix = orig_path.stem + "-" + run_options.material_source.name + "-B" + str(run_options.mean_shift_bandwidth) + "-S" + str(run_options.random_seed)
     out_fn = pathlib.Path("out") / (name_with_suffix + orig_path.suffix)
     return out_fn    
 
 
-def make_file():
+def make_file(run_options: RunOptions):
 
-    run = 1
-    mat_source = MatSource.mao_paper
+
 
     # Read in the thing output by Abaqus
     with open(parse_inp.FN_INP) as f:
         file_lines = f.readlines()
 
-    random.seed(run)
+    random.seed(run_options.random_seed)
 
-    fn_out = make_out_file(mat_source, run)
+    fn_out = make_out_file(run_options)
 
     with open(fn_out, 'w') as f_out:
-        for l in interleave(mat_source, file_lines):
+        for l in interleave(run_options, file_lines):
             if not l.endswith('\n'):
                 l = l + "\n"
             f_out.write(l)
@@ -210,9 +214,16 @@ def make_file():
 
 
 if __name__ == "__main__":
-    
+
+    for bandwith in [30, 40, 50, 60, 80]:
+        run_options = RunOptions(
+            material_source=MatSource.mao_paper,
+            mean_shift_bandwidth=bandwith,
+            random_seed=1,
+        )
+
         
-    make_file()
+        make_file(run_options)
 
 if False:
 
