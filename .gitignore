@@ -3,3 +3,4 @@ venv*/
 .python-version
 data/aba-mesh*
 *.pyc*
+out/*
