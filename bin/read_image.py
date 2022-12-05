@@ -3,7 +3,7 @@ import typing
 import collections
 import numpy
 import scipy
-import itertools
+import functools
 import random
 import cv2
 from sklearn.cluster import MeanShift, estimate_bandwidth

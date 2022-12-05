@@ -1,5 +1,6 @@
 Pillow
 numpy
+multidict
 scipy
 matplotlib
 opencv-python

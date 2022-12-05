@@ -4,6 +4,7 @@ import random
 import itertools
 import typing
 import pathlib
+import functools
 
 import parse_inp
 import read_image
@@ -43,6 +44,7 @@ def _put_in_lines(tokens, n_per_line: int) -> typing.Iterable[str]:
         yield ", ".join(str(x) for x in line_chunk)
 
 
+@functools.lru_cache(maxsize=256)
 def get_grain_labels(run_options: RunOptions):
     # Get the labeled image with "grains"
     img = read_image.read_raw_img(read_image.FN)
@@ -159,7 +161,10 @@ class InsertPos(enum.Enum):
 def interleave(run_options: RunOptions, source_lines) -> typing.Iterable[str]:
     """Mix in the old and the new"""
 
-    prop_to_elem_nums = get_grain_labels(run_options)
+    # Make this so we can cache the label output
+    cacheable_run_options = run_options._replace(random_seed=None)
+    prop_to_elem_nums = get_grain_labels(cacheable_run_options)
+
     el_section_lines = list(make_abaqus_lines(prop_to_elem_nums))
 
     material_names = [get_name(AbaInpEnt.material, label) for label in prop_to_elem_nums.keys()]
@@ -215,11 +220,11 @@ def make_file(run_options: RunOptions):
 
 if __name__ == "__main__":
 
-    for bandwith in [30, 40, 50, 60, 80]:
+    for random_seed in range(1, 2):
         run_options = RunOptions(
             material_source=MatSource.mao_paper,
-            mean_shift_bandwidth=bandwith,
-            random_seed=1,
+            mean_shift_bandwidth=50,
+            random_seed=random_seed,
         )
 
         
