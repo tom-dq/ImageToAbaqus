@@ -88,16 +88,20 @@ class Cluster(typing.NamedTuple):
 class ClusterSet:
     free_edges: typing.Dict[EdgeKey, Cluster]
     clusters: multidict.MultiDict  # Label -> Cluster. There can be duplicated labels.
+    dirty_adjacency: bool
 
     def __init__(self):
         self.free_edges = dict()
         self.clusters = multidict.MultiDict()
+        self.dirty_adjacency = True
 
     def add_all_elems(self, elems: typing.Iterable[LabeledElement]):
         for elem in elems:
             self.add_element(elem)
 
     def add_element(self, elem: LabeledElement):
+
+        self.dirty_adjacency = True
 
         if _DEBUG_OUT:
             print()
@@ -181,8 +185,10 @@ class ClusterSet:
         for to_go in to_remove:
             to_keep.elements.update(to_go.elements)
 
-        # Just retain the "to keep" one
-        self.clusters[to_keep.label] = to_keep
+        # Just retain the "to keep" one, and anything not referenced by to_remove
+        all_to_retain = [c for c in all_matching_cluster if c not in to_remove]
+        for to_retain in all_to_retain:
+            self.clusters.add(to_retain.label, to_retain)
 
         # migrate free edges to the "keep" one.
         to_apply_edges = set()
@@ -242,6 +248,70 @@ class ClusterSet:
             # lines.append(f" {clust} <- {edge_bits}")
 
         return "\n".join(lines)
+
+    def produce_adjacency_function(
+        self,
+    ) -> typing.Callable[[Cluster], typing.List[typing.Tuple[Cluster, int]]]:
+        """Figures out how many edges are shared between each of the grains. Locally attached."""
+
+        def make_single_key(cluster: Cluster):
+            return id(cluster)
+
+        def make_key(cluster1: Cluster, cluster2: Cluster):
+            id1 = id(cluster1)
+            id2 = id(cluster2)
+            return tuple(sorted([id1, id2]))
+
+        cluster_lookup = {
+            make_single_key(cluster): cluster for cluster in self.clusters.values()
+        }
+
+        adj_matrix = collections.Counter()
+
+        # Figure out the connectivity between everything. First collect all the free edges
+        internal_free_edges = dict()
+        for one_cluster in self.clusters.values():
+            locals_only = {
+                fe: elem
+                for fe, elem in one_cluster.cluster_edges.items()
+                if fe not in self.free_edges
+            }
+            for fe in locals_only:
+                if fe in internal_free_edges:
+                    # Increment the pair
+                    other_cluster = internal_free_edges[fe]
+                    key = make_key(one_cluster, other_cluster)
+                    adj_matrix[key] += 1
+
+                else:
+                    # Make a new dangling one
+                    internal_free_edges[fe] = one_cluster
+
+        # Now go through again and get Cluster -> [(Cluster, #common), (Cluster, #common), ...]
+        adj_list = collections.defaultdict(list)
+        for (id1, id2), shared_edges in adj_matrix.items():
+            cluster1 = cluster_lookup[id1]
+            cluster2 = cluster_lookup[id2]
+            adj_list[id1].append((cluster2, shared_edges))
+            adj_list[id2].append((cluster1, shared_edges))
+
+        # Note that we've figured it all out now - but not allowed to change this again!
+        self.dirty_adjacency = False
+
+        def get_shared_edges(
+            cluster: Cluster,
+        ) -> typing.List[typing.Tuple[Cluster, int]]:
+            if self.dirty_adjacency:
+                raise ValueError(f"Adjacency data is stale.")
+
+            key = make_single_key(cluster)
+
+            if key not in cluster_lookup:
+                raise ValueError(f"Don't know about {cluster}?")
+
+            return adj_list[key]
+
+        return get_shared_edges
 
     ### Testing stuff only
 
@@ -351,8 +421,25 @@ def test_specific():
     cs.add_all_elems(elems)
 
 
+def test_adjacent():
+    cluster_set = ClusterSet()
+    cluster_set.add_all_elems(_test_elems)
+
+    adj_func = cluster_set.produce_adjacency_function()
+
+    for cluster in cluster_set.clusters.values():
+        print(str(cluster))
+        for other_cluster, shared_edges in adj_func(cluster):
+            print(f"  {shared_edges} with {str(other_cluster)}")
+
+        print()
+
+
 if __name__ == "__main__":
 
+    test_adjacent()
+
+if False:
     test_clustering()
 
     test_specific()

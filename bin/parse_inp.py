@@ -1,10 +1,9 @@
 """Read an Abaqus .inp file for elem/node data"""
 
-
 import typing
 import statistics
 
-FN_INP = r"data/u-1000.inp"
+FN_INP = r"data/u-2000.inp"
 
 
 class XYZ(typing.NamedTuple):
@@ -25,21 +24,21 @@ def _average_pos(*xyzs) -> XYZ:
     averages = [statistics.mean(vals) for vals in comps]
     return XYZ(*averages)
 
+
 def _get_lines_starting_from(key: str, file_lines):
     in_section_of_interest = False
     finished = False
-
 
     for l in file_lines:
         on_header = False
         if l.strip() == key:
             if finished:
                 raise ValueError(f"Got a second line matching {key}: {l}")
-            
+
             in_section_of_interest = True
             on_header = True
 
-        elif (in_section_of_interest and l.startswith("*")):
+        elif in_section_of_interest and l.startswith("*"):
             in_section_of_interest = False
             finished = True
 
@@ -57,21 +56,47 @@ def get_nodes(file_lines: typing.List[str]) -> typing.Iterable[typing.Tuple[int,
             xyz.append(0.0)
         yield n, XYZ(*xyz)
 
+
 def get_elements(file_lines: typing.List[str]) -> typing.Iterable[Element]:
     for l in _get_lines_starting_from("*Element, type=CPS4", file_lines):
-        nconn = [int(x) for x in l.split(',')]
+        nconn = [int(x) for x in l.split(",")]
         n = nconn[0]
         conn = tuple(nconn[1:])
         yield Element(n, conn)
 
-def get_element_and_cent_absolute(file_lines) -> typing.Iterable[typing.Tuple[Element, XYZ]]:
+
+def get_element_and_cent_absolute(
+    file_lines,
+) -> typing.Iterable[typing.Tuple[Element, XYZ]]:
     nodes = {n: xyz for n, xyz in get_nodes(file_lines)}
     for elem in get_elements(file_lines):
         these_nodes = [nodes[nn] for nn in elem.connection]
         cent_xyz = _average_pos(*these_nodes)
         yield elem, cent_xyz
 
-def get_element_and_cent_relative(file_lines) -> typing.Iterable[typing.Tuple[Element, XYZ]]:
+
+def get_areas(file_lines) -> typing.Dict[int, float]:
+    """The key is the elem number, not the full object"""
+    nodes = {n: xyz for n, xyz in get_nodes(file_lines)}
+
+    def area_of_triangle(n1, n2, n3) -> float:
+        # https://www.cuemath.com/geometry/area-of-triangle-in-determinant-form/
+        x1, y1, _ = nodes[n1]
+        x2, y2, _ = nodes[n2]
+        x3, y3, _ = nodes[n3]
+
+        return 0.5 * abs(x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y3))
+
+    def get_one_area(e: Element) -> float:
+        n1, n2, n3, n4 = e.connection
+        return area_of_triangle(n1, n2, n4) + area_of_triangle(n2, n3, n4)
+
+    return {e.num: get_one_area(e) for e in get_elements(file_lines)}
+
+
+def get_element_and_cent_relative(
+    file_lines,
+) -> typing.Iterable[typing.Tuple[Element, XYZ]]:
     """Puts everything on the 0.0...1.0 range"""
 
     lower, upper = get_bounds(file_lines)
@@ -87,16 +112,16 @@ def get_element_and_cent_relative(file_lines) -> typing.Iterable[typing.Tuple[El
         if p > u:
             raise ValueError(f"Query point {p} more than maximum {u} for {idx}??")
 
-        diff = u-l
+        diff = u - l
         if not diff:
             return p
 
         return (p - l) / diff
 
-        
-
     for elem, cent_xyz in get_element_and_cent_absolute(file_lines):
-        yield elem, XYZ(x=normalise(cent_xyz, 0), y=normalise(cent_xyz, 1), z=normalise(cent_xyz, 2))
+        yield elem, XYZ(
+            x=normalise(cent_xyz, 0), y=normalise(cent_xyz, 1), z=normalise(cent_xyz, 2)
+        )
 
 
 def get_bounds(file_lines) -> typing.Tuple[XYZ, XYZ]:
@@ -116,11 +141,7 @@ if __name__ == "__main__":
 
     print(get_bounds(file_lines))
 
-    aaa = {en:xyz for en, xyz in get_element_and_cent_absolute(file_lines)}
+    aaa = {en: xyz for en, xyz in get_element_and_cent_absolute(file_lines)}
 
     for n, xyz in get_element_and_cent_relative(file_lines):
         print(n, xyz)
-
-
-
-

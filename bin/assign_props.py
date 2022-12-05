@@ -6,6 +6,7 @@ import typing
 import pathlib
 import functools
 
+import grain_partition
 import parse_inp
 import read_image
 
@@ -20,6 +21,7 @@ class RunOptions(typing.NamedTuple):
     mean_shift_bandwidth: int  # Higher bandwidth -> fewer distinct grains
     random_seed: int
 
+
 class AbaInpEnt(enum.Enum):
     # Key is entity type. Value is prefix of name
     elset = "grain-"
@@ -32,9 +34,9 @@ def batched(iterable, n):
     # https://docs.python.org/3/library/itertools.html
     # batched('ABCDEFG', 3) --> ABC DEF G
     if n < 1:
-        raise ValueError('n must be at least one')
+        raise ValueError("n must be at least one")
     it = iter(iterable)
-    while (batch := list(itertools.islice(it, n))):
+    while batch := list(itertools.islice(it, n)):
         yield batch
 
 
@@ -45,7 +47,9 @@ def _put_in_lines(tokens, n_per_line: int) -> typing.Iterable[str]:
 
 
 @functools.lru_cache(maxsize=256)
-def get_grain_labels(run_options: RunOptions):
+def get_grain_labels(
+    run_options: RunOptions,
+) -> typing.Dict[str, typing.List[parse_inp.Element]]:
     # Get the labeled image with "grains"
     img = read_image.read_raw_img(read_image.FN)
     _, raw_labeled = read_image.mean_shift(run_options.mean_shift_bandwidth, 1000, img)
@@ -59,32 +63,78 @@ def get_grain_labels(run_options: RunOptions):
     prop_to_elem_nums = collections.defaultdict(list)
 
     for n, xyz in parse_inp.get_element_and_cent_relative(file_lines):
-        # Get the nearest labeled point in the 
+        # Get the nearest labeled point in the
         idx_x = int(xyz.x * NX)
         idx_y = int(xyz.y * NY)
 
         one_based_start = raw_labeled[idx_x, idx_y] + 1
         labeled_point = one_based_start
-        
-        prop_to_elem_nums[labeled_point].append(n.num)
+
+        prop_to_elem_nums[labeled_point].append(n)
 
     return prop_to_elem_nums
+
+
+def _remove_small_grain_regions(
+    prop_to_elem_nums: typing.Dict[str, typing.List[parse_inp.Element]]
+):
+
+    # Step 1 - Build the adjaceny graph of grains
+    cluster_set = grain_partition.ClusterSet()
+    labeled_elems = []
+    for label, fe_elems in prop_to_elem_nums.items():
+        for fe_elem in fe_elems:
+            labeled_elems.append(
+                grain_partition.LabeledElement(
+                    label=str(label), num=fe_elem.num, connection=fe_elem.connection
+                )
+            )
+
+    print(labeled_elems)
+    cluster_set.add_all_elems(labeled_elems)
+
+    # Step 2 - organise the clusters by size.
+    with open(parse_inp.FN_INP) as f:
+        elem_size = parse_inp.get_areas(f.readlines())
+
+    def produce_clusters_and_sizes():
+        adj_func = cluster_set.produce_adjacency_function()
+
+        for multi_label, cluster in cluster_set.clusters.items():
+            elem_nums = {e.num for e in cluster.elements}
+            region_size = sum(elem_size[e] for e in elem_nums)
+            yield multi_label, region_size, elem_nums, adj_func(cluster)
+
+    for multi_label, region_size, elem_nums, adj_list in produce_clusters_and_sizes():
+        close_data = [(conn, cluster) for (cluster, conn) in adj_list]
+        close_data.sort(reverse=True)
+        adj_str = [f"{cluster.label}: {conn}" for conn, cluster in close_data]
+        print(multi_label, region_size, list(elem_nums)[0:10])
+        for adj_s in adj_str:
+            print(f" {adj_str}")
+
+        print()
 
 
 def get_name(ent_type: AbaInpEnt, label) -> str:
     return f"{ent_type.value}{label}"
 
+
 def _one_elset(label, elems):
     yield f"*Elset, elset={get_name(AbaInpEnt.elset, label)}"
     yield from _put_in_lines(elems, 16)
+
 
 def _one_section(label, elems):
     yield f"** Section: {get_name(AbaInpEnt.section, label)}"
     yield f"*Solid Section, elset={get_name(AbaInpEnt.elset, label)}, material={get_name(AbaInpEnt.material, label)}"
 
-def make_abaqus_lines(prop_to_elem_nums: typing.Dict[str, typing.List[int]]) -> typing.Iterable[str]:
+
+def make_abaqus_lines(
+    prop_to_elem_nums: typing.Dict[str, typing.List[int]]
+) -> typing.Iterable[str]:
     # Element sets
-    
+
     # Make an "all elements" set for enrichemnt etc
     all_elems = set()
     for elems in prop_to_elem_nums.values():
@@ -102,7 +152,9 @@ def make_abaqus_lines(prop_to_elem_nums: typing.Dict[str, typing.List[int]]) -> 
             yield from maker_func(label, elems)
 
 
-def get_material_reference_lines(mat_source: MatSource, material_names: typing.Iterable[str]) -> typing.Iterable[str]:
+def get_material_reference_lines(
+    mat_source: MatSource, material_names: typing.Iterable[str]
+) -> typing.Iterable[str]:
     """Gets some number of material def lines, straight out of a reference file."""
 
     match mat_source:
@@ -114,7 +166,6 @@ def get_material_reference_lines(mat_source: MatSource, material_names: typing.I
 
         case _:
             raise ValueError(mat_source)
-
 
     line_chunks = []
 
@@ -131,7 +182,6 @@ def get_material_reference_lines(mat_source: MatSource, material_names: typing.I
 
                 working_set = list()
 
-
             # This bit always happens, even for a new group of lines.
             working_set.append(l)
 
@@ -143,7 +193,7 @@ def get_material_reference_lines(mat_source: MatSource, material_names: typing.I
         this_name = names_to_return.popleft()
 
         one_from_file = line_chunks.pop()
-        
+
         # Set the name to the right thing
         if not one_from_file[0].startswith("*Material, name="):
             raise ValueError(one_from_file[0])
@@ -163,16 +213,30 @@ def interleave(run_options: RunOptions, source_lines) -> typing.Iterable[str]:
 
     # Make this so we can cache the label output
     cacheable_run_options = run_options._replace(random_seed=None)
-    prop_to_elem_nums = get_grain_labels(cacheable_run_options)
+    prop_to_elems = get_grain_labels(cacheable_run_options)
+
+    # TEMP!
+    _remove_small_grain_regions(prop_to_elems)
+
+    prop_to_elem_nums = {}
+    for label, elems in prop_to_elems.items():
+        prop_to_elem_nums[label] = [e.num for e in elems]
 
     el_section_lines = list(make_abaqus_lines(prop_to_elem_nums))
 
-    material_names = [get_name(AbaInpEnt.material, label) for label in prop_to_elem_nums.keys()]
-    material_prop_lines = list(get_material_reference_lines(run_options.material_source, material_names))
+    material_names = [
+        get_name(AbaInpEnt.material, label) for label in prop_to_elem_nums.keys()
+    ]
+    material_prop_lines = list(
+        get_material_reference_lines(run_options.material_source, material_names)
+    )
 
     insertions = {
-        "*End Part": (InsertPos.before, el_section_lines),  # Element sections assignments grain by grain
-        "*End Assembly": (InsertPos.after, material_prop_lines)
+        "*End Part": (
+            InsertPos.before,
+            el_section_lines,
+        ),  # Element sections assignments grain by grain
+        "*End Assembly": (InsertPos.after, material_prop_lines),
     }
 
     for l in source_lines:
@@ -187,18 +251,24 @@ def interleave(run_options: RunOptions, source_lines) -> typing.Iterable[str]:
                 lines_this_chunk.extend(data)
 
         yield from lines_this_chunk
-    
+
 
 def make_out_file(run_options: RunOptions):
     orig_path = pathlib.Path(parse_inp.FN_INP)
-    name_with_suffix = orig_path.stem + "-" + run_options.material_source.name + "-B" + str(run_options.mean_shift_bandwidth) + "-S" + str(run_options.random_seed)
+    name_with_suffix = (
+        orig_path.stem
+        + "-"
+        + run_options.material_source.name
+        + "-B"
+        + str(run_options.mean_shift_bandwidth)
+        + "-S"
+        + str(run_options.random_seed)
+    )
     out_fn = pathlib.Path("out") / (name_with_suffix + orig_path.suffix)
-    return out_fn    
+    return out_fn
 
 
 def make_file(run_options: RunOptions):
-
-
 
     # Read in the thing output by Abaqus
     with open(parse_inp.FN_INP) as f:
@@ -208,14 +278,13 @@ def make_file(run_options: RunOptions):
 
     fn_out = make_out_file(run_options)
 
-    with open(fn_out, 'w') as f_out:
+    with open(fn_out, "w") as f_out:
         for l in interleave(run_options, file_lines):
-            if not l.endswith('\n'):
+            if not l.endswith("\n"):
                 l = l + "\n"
             f_out.write(l)
 
     print(str(fn_out))
-
 
 
 if __name__ == "__main__":
@@ -227,7 +296,6 @@ if __name__ == "__main__":
             random_seed=random_seed,
         )
 
-        
         make_file(run_options)
 
 if False:
@@ -235,9 +303,6 @@ if False:
     print()
     print()
 
-
     prop_to_elem_nums = get_grain_labels()
     for l in make_abaqus_lines(prop_to_elem_nums):
         print(l)
-
-
