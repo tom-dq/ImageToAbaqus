@@ -19931,7 +19931,7 @@ Set-6, 2, 2, 5.
 ** 
 ** FIELD OUTPUT: F-Output-1
 ** 
-*Output, field
+*Output, field, FREQUENCY=20
 *Node Output
 CF, PHILSM, PSILSM, RF, U
 *Element Output, directions=YES
