@@ -438,10 +438,6 @@ def test_adjacent():
 if __name__ == "__main__":
 
     test_adjacent()
-
-if False:
     test_clustering()
-
     test_specific()
-
     test_all_orderings()
