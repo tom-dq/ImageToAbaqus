@@ -1,7 +1,7 @@
 *Material, name=metal-1 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -29,9 +29,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-2 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -59,9 +59,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-3 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -89,9 +89,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-4 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -119,9 +119,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-5 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -149,9 +149,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-6 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -179,9 +179,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-7 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -209,9 +209,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-8 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -239,9 +239,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-9 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -269,9 +269,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-10 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -299,9 +299,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-11 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -329,9 +329,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-12 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -359,9 +359,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-13 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -389,9 +389,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-14 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -419,9 +419,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-15 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -449,9 +449,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-16 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -479,9 +479,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-17 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -509,9 +509,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-18 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -539,9 +539,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-19 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -569,9 +569,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-20 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -599,9 +599,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-21 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -629,9 +629,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-22 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -659,9 +659,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-23 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -689,9 +689,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-24 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -719,9 +719,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-25 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -749,9 +749,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-26 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -779,9 +779,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-27 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -809,9 +809,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-28 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -839,9 +839,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-29 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -869,9 +869,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-30 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -899,9 +899,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-31 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -929,9 +929,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-32 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -959,9 +959,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-33 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -989,9 +989,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-34 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1019,9 +1019,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-35 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1049,9 +1049,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-36 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1079,9 +1079,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-37 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1109,9 +1109,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-38 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1139,9 +1139,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-39 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1169,9 +1169,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-40 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1199,9 +1199,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-41 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1229,9 +1229,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-42 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1259,9 +1259,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-43 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1289,9 +1289,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-44 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1319,9 +1319,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-45 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1349,9 +1349,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-46 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1379,9 +1379,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-47 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1409,9 +1409,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-48 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1439,9 +1439,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-49 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1469,9 +1469,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-50 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1499,9 +1499,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-51 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1529,9 +1529,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-52 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1559,9 +1559,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-53 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1589,9 +1589,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-54 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1619,9 +1619,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-55 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1649,9 +1649,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-56 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1679,9 +1679,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-57 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1709,9 +1709,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-58 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1739,9 +1739,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-59 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1769,9 +1769,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-60 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1799,9 +1799,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-61 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1829,9 +1829,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-62 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1859,9 +1859,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-63 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1889,9 +1889,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-64 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1919,9 +1919,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-65 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1949,9 +1949,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-66 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -1979,9 +1979,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-67 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2009,9 +2009,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-68 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2039,9 +2039,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-69 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2069,9 +2069,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-70 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2099,9 +2099,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-71 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2129,9 +2129,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-72 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2159,9 +2159,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-73 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2189,9 +2189,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-74 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2219,9 +2219,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-75 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2249,9 +2249,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-76 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2279,9 +2279,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-77 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2309,9 +2309,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-78 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2339,9 +2339,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-79 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2369,9 +2369,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-80 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2399,9 +2399,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-81 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2429,9 +2429,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-82 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2459,9 +2459,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-83 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2489,9 +2489,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-84 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2519,9 +2519,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-85 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2549,9 +2549,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-86 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2579,9 +2579,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-87 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2609,9 +2609,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-88 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2639,9 +2639,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-89 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2669,9 +2669,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-90 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2699,9 +2699,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-91 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2729,9 +2729,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-92 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2759,9 +2759,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-93 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2789,9 +2789,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-94 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2819,9 +2819,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-95 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2849,9 +2849,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-96 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2879,9 +2879,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-97 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2909,9 +2909,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-98 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2939,9 +2939,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-99 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2969,9 +2969,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-100 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -2999,9 +2999,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-101 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -3029,9 +3029,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-102 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -3059,9 +3059,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-103 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -3089,9 +3089,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-104 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -3119,9 +3119,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-105 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -3149,9 +3149,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-106 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -3179,9 +3179,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-107 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -3209,9 +3209,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-108 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -3239,9 +3239,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-109 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -3269,9 +3269,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-110 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -3299,9 +3299,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-111 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -3329,9 +3329,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-112 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -3359,9 +3359,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-113 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -3389,9 +3389,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-114 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -3419,9 +3419,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-115 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -3449,9 +3449,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-116 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -3479,9 +3479,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-117 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -3509,9 +3509,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-118 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -3539,9 +3539,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-119 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -3569,9 +3569,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-120 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -3599,9 +3599,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-121 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -3629,9 +3629,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-122 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -3659,9 +3659,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-123 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -3689,9 +3689,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-124 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 
@@ -3719,9 +3719,9 @@
  0.500000,  0.000000, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0
  0.000000,  10.000000,  0.000010, 0.0, 0.0, 0.0, 0.0, 0.0
 *Material, name=metal-125 
-*Damage Initiation, criterion=MAXPE 
- 0.003, 
-*Damage Evolution, type=DISPLACEMENT 
+*Damage Initiation, criterion=USER, FAILURE MECHANISMS=1, PROPERTIES=1
+ 0.02,
+*Damage Evolution, type=DISPLACEMENT, FAILURE INDEX=1
  0.02, 
 *Damage Stabilization 
 1e-06 

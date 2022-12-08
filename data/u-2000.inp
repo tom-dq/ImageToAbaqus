@@ -5115,7 +5115,7 @@
 ** 
 *Step, name=Load, nlgeom=NO, inc=100000
 *Static
-0.001, 1., 1e-15, 0.001
+0.01, 1., 1e-15, 0.01
 ** 
 ** BOUNDARY CONDITIONS
 ** 
@@ -5132,7 +5132,9 @@ Set-6, 2, 2, 5.
 ** CONTROLS
 ** 
 *Controls, reset
-*Controls, analysis=discontinuous
+*Controls, analysis=discontinuous 
+*Controls, parameters=time incrementation 
+, , , , , , , 20, , , 
 ** 
 ** OUTPUT REQUESTS
 ** 
@@ -5145,6 +5147,8 @@ Set-6, 2, 2, 5.
 CF, PHILSM, PSILSM, RF, U
 *Element Output, directions=YES
 LE, PE, PEEQ, PEMAG, S, STATUSXFEM
+SDV109, SDV110, SDV111, SDV112, SDV113, SDV114, SDV115, SDV116
+SDV117, SDV118, SDV119, SDV120, SDV121
 *Contact Output
 CDISP, CSTRESS
 ** 
