@@ -341,7 +341,7 @@ def make_out_file(run_options: RunOptions):
         if run_options.critical_contiguous_grain_ratio
         else "None"
     )
-    grain_format.replace(".", "o")
+    grain_format = grain_format.replace(".", "o")
     name_with_suffix = (
         orig_path.stem
         + "-"
@@ -388,15 +388,16 @@ if __name__ == "__main__":
         # 0.001,
         # 0.0025,
     ]:
-        for random_seed in range(1000, 1100):
-            run_options = RunOptions(
-                material_source=MatSource.mao_paper,
-                mean_shift_bandwidth=50,
-                random_seed=random_seed,
-                critical_contiguous_grain_ratio=critical_contiguous_grain_ratio,  # 0.00025,
-            )
+        for bw in [30, 40, 50, 60]:
+            for random_seed in range(2000, 2001):
+                run_options = RunOptions(
+                    material_source=MatSource.mao_paper,
+                    mean_shift_bandwidth=bw,
+                    random_seed=random_seed,
+                    critical_contiguous_grain_ratio=critical_contiguous_grain_ratio,  # 0.00025,
+                )
 
-            make_file(run_options)
+                make_file(run_options)
 
 if False:
 
