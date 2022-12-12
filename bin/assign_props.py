@@ -384,7 +384,7 @@ if __name__ == "__main__":
         # 0.000025,
         # 0.00005,
         # 0.0001,  # Looks good?
-        0.00025,
+        # 0.00025,
         0.001,
         # 0.0025,
     ]:
@@ -392,7 +392,7 @@ if __name__ == "__main__":
         for bw in [
             25,
         ]:
-            for random_seed in range(3000, 3200):
+            for random_seed in range(4000, 4200):
                 run_options = RunOptions(
                     material_source=MatSource.mao_paper,
                     mean_shift_bandwidth=bw,

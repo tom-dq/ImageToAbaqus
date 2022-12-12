@@ -3,7 +3,7 @@
 import typing
 import statistics
 
-FN_INP = r"data/u-1000.inp"
+FN_INP = r"data/u-1000-pressure.inp"
 
 
 class XYZ(typing.NamedTuple):
